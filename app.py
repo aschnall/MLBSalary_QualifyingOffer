@@ -10,6 +10,8 @@ app = Flask(__name__)
 @app.route("/")
 def home():
     # parse HTML from link and isolate salaries
+    # citing the following link which I followed in order to parse the HTML data using Beautiful Soup
+    # https://www.twilio.com/blog/web-scraping-and-parsing-html-in-python-with-beautiful-soup
     data_url = 'https://questionnaire-148920.appspot.com/swe/data.html'
     html_text = requests.get(data_url).text
     soup = BeautifulSoup(html_text, 'html.parser')
@@ -69,7 +71,9 @@ def home():
     all_mean = statistics.mean(all_salaries)
     non_min_mean = statistics.mean(non_min_sals)
 
-    #format numbers for display
+    # format numbers for display
+    # citing the following link for assistance with translating to currency strings
+    # https://stackabuse.com/format-number-as-currency-string-in-python/
     qualifying_offer_fmt = "${:,.2f}".format(qualifying_offer)
     qualifying_offer_fmt = qualifying_offer_fmt[0:len(qualifying_offer_fmt)-3]
     top_125_mean_fmt = "${:,.2f}".format(top_125_mean)

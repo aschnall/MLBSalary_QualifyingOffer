@@ -52,11 +52,17 @@
           <canvas id="histogram-all" width="200" height="200"></canvas>
         </div>
         <script>
+          // citing the link below which I used to figure out how to pass data from flask to external javascript file
+          // https://stackoverflow.com/questions/59074023/passing-data-from-flask-to-javascript-as-json-not-working-from-separate-js-file
           let allSalData = '{{ data.all_sals }}'
           let top125SalData = '{{ data.top125_sals }}'
           let nonMinSalData = '{{ data.non_min_sals }}'
           let qoRank = '{{ data.qo_rank }}'
         </script>
+        <!-- 
+        citing the following link which also assisted with connecting flask data to external javascript file
+        https://stackoverflow.com/questions/30011170/flask-application-how-to-link-a-javascript-file-to-website 
+        -->
         <script type="text/javascript" src="{{ url_for('static', filename='index.js') }}"></script>
     </body>
 </html>

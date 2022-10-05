@@ -67,6 +67,10 @@ function calculateRanges(salData) {
 }
 
 // create the historgrams
+// citing following link which I followed in order to create histograms with Chart.js
+// https://www.educative.io/answers/chartjs---create-a-histogram
+// also citing this link which helped with configuring the height of the charts
+// https://stackoverflow.com/questions/41953158/set-height-of-chart-in-chart-js
 const chartTop125 = new Chart(ctxTop125, {
     type: 'bar',
     data: {

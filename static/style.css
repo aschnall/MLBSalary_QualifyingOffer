@@ -1,6 +1,11 @@
-h1, h4 { 
+  h1, h4 { 
     text-align: center
   }
+
+  /*
+  citing the link below which I used to style my table
+  https://www.w3schools.com/html/tryit.asp?filename=tryhtml_table_intro
+  */
 
   table {
     font-family: arial, sans-serif;
