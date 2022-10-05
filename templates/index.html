@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <script src='https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js'></script>
+      <link rel="stylesheet" href="../static/style.css">
+    </head>
+    <body>
+        <h1><b>The Qualifying Offer is {{ data.qual_off }}</b></h1>
+        <h4 id="note"></h4>
+        <table>
+            <tr>
+              <th>Salary Group</th>
+              <th>Number of Players</th>
+              <th>Minimum</th>
+              <th>Median</th>
+              <th>Max</th>
+              <th>Mean</th>
+            </tr>
+            <tr>
+              <td>Top 125</td>
+              <td>125</td>
+              <td>{{ data.top_125_min }}</td>
+              <td>{{ data.top_125_med }}</td>
+              <td>{{ data.top_125_max }}</td>
+              <td>{{ data.top_125_mean }}</td>
+            </tr>
+            <tr>
+              <td>Non-Minimum</td>
+              <td>{{ data.non_min_players }}</td>
+              <td>{{ data.non_min_min }}</td>
+              <td>{{ data.non_min_med }}</td>
+              <td>{{ data.non_min_max }}</td>
+              <td>{{ data.non_min_mean }}</td>
+            </tr>
+            <tr>
+              <td>All</td>
+              <td>{{ data.num_players }}</td>
+              <td>{{ data.all_min }}</td>
+              <td>{{ data.all_med }}</td>
+              <td>{{ data.all_max }}</td>
+              <td>{{ data.all_mean }}</td>
+            </tr>
+        </table>
+        <div class="histogram">
+          <canvas id="histogram-top125" width="200" height="200"></canvas>
+        </div>
+        <div class="histogram">
+          <canvas id="histogram-nonmin" width="200" height="200"></canvas>
+        </div>
+        <div class="histogram">
+          <canvas id="histogram-all" width="200" height="200"></canvas>
+        </div>
+        <script>
+          let allSalData = '{{ data.all_sals }}'
+          let top125SalData = '{{ data.top125_sals }}'
+          let nonMinSalData = '{{ data.non_min_sals }}'
+          let qoRank = '{{ data.qo_rank }}'
+        </script>
+        <script type="text/javascript" src="{{ url_for('static', filename='index.js') }}"></script>
+    </body>
+</html>
