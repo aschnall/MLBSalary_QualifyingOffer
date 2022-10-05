@@ -47,7 +47,7 @@ def home():
 
     # calculate qualifying offer
     qualifying_offer = top125_salary_sum / 125
-    qo_rank = 0
+    qo_rank = 1
     
     # isolate/calculate non-min salaries
     non_min_salary_sum = 0
@@ -74,32 +74,19 @@ def home():
     # format numbers for display
     # citing the following link for assistance with translating to currency strings
     # https://stackabuse.com/format-number-as-currency-string-in-python/
-    qualifying_offer_fmt = "${:,.2f}".format(qualifying_offer)
-    qualifying_offer_fmt = qualifying_offer_fmt[0:len(qualifying_offer_fmt)-3]
-    top_125_mean_fmt = "${:,.2f}".format(top_125_mean)
-    top_125_mean_fmt = top_125_mean_fmt[0:len(top_125_mean_fmt)-3]
-    all_mean_fmt = "${:,.2f}".format(all_mean)
-    all_mean_fmt = all_mean_fmt[0:len(all_mean_fmt)-3]
-    top_125_med_fmt = "${:,.2f}".format(top_125_med)
-    top_125_med_fmt = top_125_med_fmt[0:len(top_125_med_fmt)-3]
-    all_med_fmt = "${:,.2f}".format(all_med)
-    all_med_fmt = all_med_fmt[0:len(all_med_fmt)-3]
-    num_players_fmt = "{:,.2f}".format(num_players)
-    num_players_fmt = num_players_fmt[0:len(num_players_fmt)-3]
-    non_min_med_fmt = "${:,.2f}".format(non_min_med)
-    non_min_med_fmt = non_min_med_fmt[0:len(non_min_med_fmt)-3]
-    non_min_mean_fmt = "${:,.2f}".format(non_min_mean)
-    non_min_mean_fmt = non_min_mean_fmt[0:len(non_min_mean_fmt)-3]
-    non_min_players_fmt = "{:,.2f}".format(len(non_min_sals))
-    non_min_players_fmt = non_min_players_fmt[0:len(non_min_players_fmt)-3]
-    non_min_min_fmt = "${:,.2f}".format(non_min_min)
-    non_min_min_fmt = non_min_min_fmt[0:len(non_min_min_fmt)-3]
-    max_sal_fmt = "${:,.2f}".format(max_sal)
-    max_sal_fmt = max_sal_fmt[0:len(max_sal_fmt)-3]
-    top125_min_fmt = "${:,.2f}".format(top125_min)
-    top125_min_fmt = top125_min_fmt[0:len(top125_min_fmt)-3]
-    min_sal_fmt = "${:,.2f}".format(min_sal)
-    min_sal_fmt = min_sal_fmt[0:len(min_sal_fmt)-3]
+    qualifying_offer_fmt = format_numbers(True, qualifying_offer)
+    top_125_mean_fmt = format_numbers(True, top_125_mean)
+    all_mean_fmt = format_numbers(True, all_mean)
+    top_125_med_fmt = format_numbers(True, top_125_med)
+    all_med_fmt = format_numbers(True, all_med)
+    num_players_fmt = format_numbers(False, num_players)
+    non_min_med_fmt = format_numbers(True, non_min_med)
+    non_min_mean_fmt = format_numbers(True, non_min_mean)
+    non_min_players_fmt = format_numbers(False, len(non_min_sals))
+    non_min_min_fmt = format_numbers(True, non_min_min)
+    max_sal_fmt = format_numbers(True, max_sal)
+    top125_min_fmt = format_numbers(True, top125_min)
+    min_sal_fmt = format_numbers(True, min_sal)
 
     # bundling all data into object to use on the front end
     data = {
@@ -125,3 +112,12 @@ def home():
     }
 
     return render_template("index.html", data=data)
+
+# helper function for formatting numbers to display on frontend
+def format_numbers(currency, num):
+    if currency:
+        num_fmt = "${:,.2f}".format(num)
+        return num_fmt[0:len(num_fmt)-3]
+    else:
+        num_fmt = "{:,.2f}".format(num)
+        return num_fmt[0:len(num_fmt)-3]
