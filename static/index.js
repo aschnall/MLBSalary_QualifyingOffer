@@ -5,13 +5,17 @@ const noteElem = document.getElementById('note');
 const notePart1 = 'Note: The Qualifying Offer would\'ve ranked as the ';
 const notePart2 = 'highest salary in the MLB in 2016';
 
-// parse data received from backend received as string - convert to array
-allSalData = allSalData.slice(1,allSalData.length-1)
-allSalDataArr = allSalData.split(',')
-top125SalData = top125SalData.slice(1,top125SalData.length-1)
-top125SalDataArr = top125SalData.split(',')
-nonMinSalData = nonMinSalData.slice(1,nonMinSalData.length-1)
-nonMinSalDataArr = nonMinSalData.split(',')
+
+// parse data received from backend as string - convert to array
+allSalDataArr = cleanSalaryData(allSalData)
+top125SalDataArr = cleanSalaryData(top125SalData)
+nonMinSalDataArr = cleanSalaryData(nonMinSalData)
+
+// helper function to convert string data from backend to array
+function cleanSalaryData(salData) {
+  salData = salData.slice(1,salData.length-1)
+  return salData.split(',')
+}
 
 allSalHist = calculateRanges(allSalDataArr)
 top125SalHist = calculateRanges(top125SalDataArr)
