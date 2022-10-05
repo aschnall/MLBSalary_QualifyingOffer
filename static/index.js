@@ -11,16 +11,17 @@ allSalDataArr = cleanSalaryData(allSalData)
 top125SalDataArr = cleanSalaryData(top125SalData)
 nonMinSalDataArr = cleanSalaryData(nonMinSalData)
 
+// create data needed for histogram
+allSalHist = calculateRanges(allSalDataArr)
+top125SalHist = calculateRanges(top125SalDataArr)
+nonMinSalHist = calculateRanges(nonMinSalDataArr)
+determineRank(qoRank)
+
 // helper function to convert string data from backend to array
 function cleanSalaryData(salData) {
   salData = salData.slice(1,salData.length-1)
   return salData.split(',')
 }
-
-allSalHist = calculateRanges(allSalDataArr)
-top125SalHist = calculateRanges(top125SalDataArr)
-nonMinSalHist = calculateRanges(nonMinSalDataArr)
-determineRank(qoRank)
 
 // determine the ending for the qual offer rank
 function determineRank(qo_rank) {
